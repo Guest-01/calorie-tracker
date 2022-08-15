@@ -5,6 +5,7 @@ export default {
   slug: "calorie-tracker",
   version: "1.0.0",
   orientation: "portrait",
+  userInterfaceStyle: "automatic",
   icon: "./assets/icon.png",
   splash: {
     image: "./assets/splash.png",
@@ -17,6 +18,9 @@ export default {
   assetBundlePatterns: [
     "**/*"
   ],
+  android: {
+    softwareKeyboardLayoutMode: "pan",
+  },
   ios: {
     supportsTablet: true
   },
