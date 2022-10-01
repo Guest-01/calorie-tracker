@@ -5,6 +5,19 @@ import { Ionicons } from "@expo/vector-icons";
 
 export default function ({ navigation }) {
   const [showPw, setShowPw] = useState(false);
+  const [username, setUsername] = useState("")
+  const [pw, setPw] = useState("")
+  const [isError, setIsError] = useState(false)
+
+  const handleLogin = () => {
+    setIsError(false);
+    if (username === "test" && pw === "1234") {
+      console.log("auth success");
+      navigation.replace("Home")
+    } else {
+      setIsError(true);
+    }
+  }
 
   return (
     <Layout>
@@ -14,9 +27,15 @@ export default function ({ navigation }) {
           <Text size="md" style={{ textAlign: 'center', color: themeColor.gray300 }}>방금 먹은 그거 몇 칼로리...?</Text>
         </View>
         <View style={{ flex: 1, justifyContent: 'space-between' }}>
-          <TextInput placeholder="아이디" />
+          <TextInput
+            placeholder="아이디"
+            value={username}
+            onChangeText={(text) => { setIsError(false); setUsername(text); }}
+          />
           <TextInput
             placeholder="비밀번호"
+            value={pw}
+            onChangeText={(text) => { setIsError(false); setPw(text); }}
             secureTextEntry={!showPw}
             rightContent={
               <TouchableOpacity onPress={() => setShowPw(!showPw)}>
@@ -27,11 +46,14 @@ export default function ({ navigation }) {
               </TouchableOpacity>
             }
           />
-          <Button text="로그인" onPress={() => navigation.replace("Home")} />
-          <Button text="회원가입" color={themeColor.black200} onPress={() => navigation.replace("Home")} />
+          <Button text="로그인" onPress={handleLogin} />
+          <Button text="회원가입" color={themeColor.black200} onPress={() => console.log("회원가입 누름")} />
         </View>
         <View style={{ flex: 1, justifyContent: 'space-between', marginVertical: 20 }}>
-          <Text size="md" status="danger" style={{ textAlign: 'center' }}>오류 메시지</Text>
+          {isError ?
+            <Text size="md" status="danger" style={{ textAlign: 'center' }}>오류 메시지</Text>
+            : null
+          }
           <Text size="md" style={{ textAlign: 'center' }}>ver1.0.0</Text>
         </View>
       </View>

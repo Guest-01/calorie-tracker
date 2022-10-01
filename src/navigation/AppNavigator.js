@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Home from "../screens/Home";
-import SecondScreen from "../screens/SecondScreen";
+import Search from "../screens/Search";
 import Login from "../screens/Login";
 
 const MainStack = createNativeStackNavigator();
@@ -16,7 +16,7 @@ const Main = () => {
     >
       <MainStack.Screen name="Login" component={Login} />
       <MainStack.Screen name="Home" component={Home} />
-      <MainStack.Screen name="SecondScreen" component={SecondScreen} />
+      <MainStack.Screen name="Search" component={Search} />
     </MainStack.Navigator>
   );
 };
